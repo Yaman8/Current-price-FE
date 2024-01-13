@@ -8,7 +8,7 @@ const columns = [
   {
     field: "description",
     headerName: "Currency",
-    width: 150,
+    width: 300,
   },
   {
     field: "code",
@@ -60,7 +60,6 @@ const Table = ({ data }) => {
   //       //   x?.rate.includes(searchValue)
   //     )
   //   );
-  console.log(rows);
   const handleChange = (e) => {
     searchRef.current = e.target.value;
     setSearchValue(searchRef.current);
@@ -68,29 +67,39 @@ const Table = ({ data }) => {
   return (
     // <Box sx={{ height: 400, width: "100%" }}>
     <>
-      <input value={searchValue} onChange={(e) => handleChange(e)} />
-
-      <DataGrid
-        rows={!_.isEmpty(rows) ? rows : []}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
+      <div className="mx-8 my-4">
+        <div className="flex space-between mb-2">
+          <input
+            type="text"
+            className="p-2 border-2 rounded"
+            placeholder="Search..."
+            required
+            value={searchValue}
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <DataGrid
+          rows={!_.isEmpty(rows) ? rows : []}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
             },
-          },
-        }}
-        onRowClick={(params) => {
-          setShowModal(true);
-          setSelectedRow(params);
-        }}
-        pageSizeOptions={[5]}
-      />
-      <Modal
-        row={selectedRow}
-        showModal={showModal}
-        setShowModal={setShowModal}
-      />
+          }}
+          onRowClick={(params) => {
+            setShowModal(true);
+            setSelectedRow(params);
+          }}
+          pageSizeOptions={[5]}
+        />
+        <Modal
+          row={selectedRow}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      </div>
     </>
   );
 };
