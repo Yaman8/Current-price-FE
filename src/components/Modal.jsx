@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Modal = ({ row, showModal, setShowModal }) => {
   return (
@@ -55,6 +55,12 @@ const Modal = ({ row, showModal, setShowModal }) => {
       ) : null}
     </>
   );
+};
+
+Modal.propTypes = {
+  row: PropTypes.object,
+  showModal: PropTypes.bool,
+  setShowModal: PropTypes.func,
 };
 
 export default Modal;

@@ -3,23 +3,27 @@ import _ from "lodash";
 import { useMemo, useRef, useState } from "react";
 import Modal from "./Modal";
 
+import PropTypes from "prop-types";
+
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
     field: "description",
     headerName: "Currency",
     width: 300,
+    sortComparator: (v1, v2) => v1.localeCompare(v2),
   },
   {
     field: "code",
     headerName: "Code",
     width: 150,
+    sortComparator: (v1, v2) => v1.localeCompare(v2),
   },
   {
     field: "rate",
     headerName: "Rate",
-    // type: "number",
     width: 110,
+    sortComparator: (v1, v2) => v1.localeCompare(v2),
   },
 ];
 
@@ -102,6 +106,10 @@ const Table = ({ data }) => {
       </div>
     </>
   );
+};
+
+Table.propTypes = {
+  data: PropTypes.object,
 };
 
 export default Table;

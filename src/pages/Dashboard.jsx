@@ -1,4 +1,3 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Chart from "../components/Chart";
@@ -12,19 +11,18 @@ const getCurrentPrice = async () => {
 };
 
 const Dashboard = () => {
-  const { isPending, isError, data, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["currentPrice"],
     queryFn: getCurrentPrice,
     refetchInterval: 10000,
   });
-  console.log(data?.data?.time);
   return (
     <>
       <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900 mb-20">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
           <a href="#" className="flex items-center">
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              Currency Rate
+              CoinDesk Price Index
             </span>
           </a>
           <div className="flex items-center lg:order-2">
@@ -38,6 +36,9 @@ const Dashboard = () => {
         <div className="text-gray-400">
           Last updated: {data?.data?.time?.updated}
         </div>
+      </div>
+      <div className="w-screen flex items-center justify-center text-lg font-bold">
+        CoinDesk Bitcoin Price Index (USD)
       </div>
       {data?.data && <Chart data={data.data} />}
       {data?.data && <Table data={data.data} />}
