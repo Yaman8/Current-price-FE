@@ -13,6 +13,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import PropTypes from "prop-types";
+
 const Chart = ({ data }) => {
   const chartData = useMemo(() => {
     const keys = Object.keys(data?.bpi);
@@ -27,7 +29,7 @@ const Chart = ({ data }) => {
   }, [data]);
   return (
     <>
-      <div className="flex mx-6 my-4 grid grid-cols-1 lg:grid-cols-2 ">
+      <div className="mx-6 my-4 grid grid-cols-1 lg:grid-cols-2 ">
         <div>
           <ResponsiveContainer width="100%" height={400}>
             <LineChart width={600} height={300} data={chartData}>
@@ -69,6 +71,10 @@ const Chart = ({ data }) => {
       </div>
     </>
   );
+};
+
+Chart.propTypes = {
+  data: PropTypes.object,
 };
 
 export default Chart;

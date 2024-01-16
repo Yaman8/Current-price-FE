@@ -54,22 +54,14 @@ const Table = ({ data }) => {
         x?.rate.includes(searchValue)
     );
     return currencyRows;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, searchValue]);
-  //   console.log(
-  //     rows?.filter(
-  //       (x) => x?.id.includes(searchValue)
-  //       //   x?.id.includes(searchValue)===1 ||
-  //       //   x?.description.includes(searchValue) ||
-  //       //   x?.code.includes(searchValue) ||
-  //       //   x?.rate.includes(searchValue)
-  //     )
-  //   );
+
   const handleChange = (e) => {
     searchRef.current = e.target.value;
     setSearchValue(searchRef.current);
   };
   return (
-    // <Box sx={{ height: 400, width: "100%" }}>
     <>
       <div className="mx-8 my-4">
         <div className="flex space-between mb-2">
